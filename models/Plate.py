@@ -25,6 +25,18 @@ class plateModel(db.Model):
             return plate
         return None
     
+    def validatePlate(self, plate_id):
+        try:
+            prefix,sufix = plate_id.split("-")
+            letters = ''.join([i for i in sufix if not i.isdigit()])
+            numbers = ''.join([i for i in sufix if i.isdigit()])
+            if (len(prefix) <= 3 and len(prefix) >= 1) and (len(letters) == 1 or len(letters) == 2) and (len(numbers) <= 4 and numbers[0] != "0"):
+                    return 200
+            else:
+                return 422
+        except:
+            return 400
+        
     def save_plate(self):
         db.session.add(self)
         db.session.commit()
