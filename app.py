@@ -13,10 +13,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 def dbCreate():
     db.create_all()
 
-api.add_resource(getPlates, '/plates')
-api.add_resource(postPlates, '/plates/<string:plate_id>')
+api.add_resource(getPlates, '/plates')#GET Request
+api.add_resource(postPlates, '/plates/<string:plate_id>')#POST Request
 
-#activates debug mode and other specs
+
 if __name__ == '__main__':
     from sqlAlchemy import db 
     db.init_app(app)
